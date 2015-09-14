@@ -5,7 +5,6 @@ def costFunction(theta, X, y, return_grad):
 #   w.r.t. to the parameters.
 
     import numpy as np 
-    from scipy.special import expit 
     from sigmoid import sigmoid
 
     # Initialize some useful values
@@ -57,6 +56,6 @@ def costFunction(theta, X, y, return_grad):
     if return_grad == True:
         return J, np.transpose(grad)
     elif return_grad == False:
-        return J # for use in fmin optimization function
+        return J # for use in fmin/fmin_bfgs optimization function
 
 # =============================================================
