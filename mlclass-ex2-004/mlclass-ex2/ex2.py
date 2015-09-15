@@ -79,7 +79,7 @@ raw_input('Program paused. Press enter to continue.\n')
 #  This function will return theta and the cost 
 #  fmin followed by fmin_bfgs inspired by stackoverflow.com/a/23089696/583834
 #  overkill... but wanted to use fmin_bfgs, and got error if used first
-myargs=(X_padded, y, False)
+myargs=(X_padded, y)
 theta = fmin(cf.costFunction, x0=initial_theta, args=myargs)
 theta, cost_at_theta, _, _, _, _, _ = fmin_bfgs(cf.costFunction, x0=theta, args=myargs, full_output=True)
 

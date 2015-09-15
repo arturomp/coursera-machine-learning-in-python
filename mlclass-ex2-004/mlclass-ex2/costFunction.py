@@ -1,4 +1,4 @@
-def costFunction(theta, X, y, return_grad):
+def costFunction(theta, X, y, return_grad=False):
 #COSTFUNCTION Compute cost and gradient for logistic regression
 #   J = COSTFUNCTION(theta, X, y) computes the cost of using theta as the
 #   parameter for logistic regression and the gradient of the cost
@@ -49,9 +49,9 @@ def costFunction(theta, X, y, return_grad):
     # so we transpose the latter, subtract y, obtaining a vector of (1, m)
     # we multiply such vector by X, whose dimension is 
     #   X.shape = (m, n+1), 
-    # and we obtain a (1, n+1) vector
+    # and we obtain a (1, n+1) vector, which we also transpose
     # this last vectorized multiplication takes care of the sum
-    grad = (1./m) * np.dot(np.transpose(sigmoid( np.dot(X,theta) )) - y, X);
+    grad = (1./m) * np.dot(sigmoid( np.dot(X,theta) ).T - y, X).T;
 
     if return_grad == True:
         return J, np.transpose(grad)

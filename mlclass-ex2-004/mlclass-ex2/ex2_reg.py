@@ -66,7 +66,7 @@ lambda_reg = 0.1
 
 # Compute and display initial cost 
 # gradient is too large to display in this exercise
-cost = cfr.costFunctionReg(initial_theta, X, y, lambda_reg, return_grad=False);
+cost = cfr.costFunctionReg(initial_theta, X, y, lambda_reg);
 
 print('Cost at initial theta (zeros): {:f}'.format(cost));
 # print('Gradient at initial theta (zeros):')
@@ -93,7 +93,7 @@ lambda_reg = 1;
 
 #  Run fmin_bfgs to obtain the optimal theta
 #  This function returns theta and the cost 
-myargs=(X, y, lambda_reg, False)
+myargs=(X, y, lambda_reg)
 theta = fmin_bfgs(cfr.costFunctionReg, x0=initial_theta, args=myargs)
 
 # Plot Boundary

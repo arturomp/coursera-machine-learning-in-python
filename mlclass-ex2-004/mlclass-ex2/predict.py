@@ -7,10 +7,10 @@ def predict(theta, X):
     import numpy as np
     from sigmoid import sigmoid
 
-    m = X.shape[0]; # Number of training examples
+    m = X.shape[0] # Number of training examples
 
     # You need to return the following variables correctly
-    p = np.zeros((m, 1));
+    p = np.zeros((m, 1))
 
 # ====================== YOUR CODE HERE ======================
 # Instructions: Complete the following code to make predictions using
@@ -18,8 +18,8 @@ def predict(theta, X):
 #               You should set p to a vector of 0's and 1's
 #
 
-    sigValue = sigmoid( np.dot(X,theta) );
-    p = sigValue >= 0.5;
+    sigValue = sigmoid( np.dot(X,theta) )
+    p = sigValue >= 0.5
 
     return p
 
