@@ -6,6 +6,7 @@
 # 
 # depends on 
 #
+#     displayData.py
 #     lrCostFunction.py (logistic regression cost function)
 #     oneVsAll.py
 #     predictOneVsAll.py
@@ -70,7 +71,7 @@ raw_input('Program paused. Press enter to continue.\n')
 #  After ...
 pred = pova.predictOneVsAll(all_theta, X)
 
-print('Training Set Accuracy: {:f}'.format((np.mean(pred == y.flatten()%10)*100)))
+print('Training Set Accuracy: {:f}'.format((np.mean(pred == y%10)*100)))
 print('Training Set Accuracy for 1:  {:f}'.format(np.mean(pred[500:1000]  == y.flatten()[500:1000]%10)  * 100))
 print('Training Set Accuracy for 2:  {:f}'.format(np.mean(pred[1000:1500] == y.flatten()[1000:1500]%10) * 100))
 print('Training Set Accuracy for 3:  {:f}'.format(np.mean(pred[1500:2000] == y.flatten()[1500:2000]%10) * 100))
