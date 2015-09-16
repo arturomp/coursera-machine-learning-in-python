@@ -15,7 +15,7 @@ def predictOneVsAll(all_theta, X):
     num_labels = all_theta.shape[0]
 
     # You need to return the following variables correctly
-    p = np.zeros((m, 1));
+    p = np.zeros((m, 1))
 
     # Add ones to the X data matrix
     X = np.column_stack((np.ones((m,1)), X))

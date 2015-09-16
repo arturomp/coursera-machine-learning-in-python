@@ -9,7 +9,7 @@ def oneVsAll(X, y, num_labels, lambda_reg):
 
     import numpy as np
     import lrCostFunction as lrcf
-    from scipy.optimize import fmin_cg, minimize
+    from scipy.optimize import minimize
 
     # Some useful variables
     m, n = X.shape
@@ -33,15 +33,31 @@ def oneVsAll(X, y, num_labels, lambda_reg):
 
         print("Training {:d} out of {:d} categories...".format(c+1, num_labels))
 
-        # Set options for fmin_cg
+
+        ## functions WITH gradient/jac parameter
+        # from https://github.com/tansaku/py-coursera/issues/9#issuecomment-8801160
         myargs = (X, (y%10==c).astype(int), lambda_reg, True)
+        theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':13}, method="Newton-CG", jac=True)
 
-    	# use fmin_cg to train oneVsAll classifier
-        # theta = fmin_cg(lrcf.lrCostFunction, x0=initial_theta, args=myargs, maxiter=50)
-    	theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, method="Newton-CG", jac=True)
+        # left other methods in case we want to tinker later on
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="CG", jac=True)
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="BFGS", jac=True)
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="L-BFGS-B", jac=True)
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="TNC", jac=True)
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="SLSQP", jac=True)
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="dogleg", jac=True)
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="trust-ncg", jac=True)
+        
+        ## functions WITHOUT gradient/jac parameter
+        # myargs = (X, (y%10==c).astype(int), lambda_reg)
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="Nelder-Mead")
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="Powell") #maybe
+        # theta = minimize(lrcf.lrCostFunction, x0=initial_theta, args=myargs, options={'disp': True, 'maxiter':10}, method="COBYLA")
 
-    	# assign row of all_theta corresponding to current c/class
+        
+        # assign row of all_theta corresponding to current c/class
     	all_theta[c,:] = theta["x"]
+
 
     # =========================================================================
 
