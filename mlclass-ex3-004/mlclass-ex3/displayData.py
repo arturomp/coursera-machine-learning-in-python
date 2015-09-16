@@ -7,7 +7,18 @@ def displayData(X, example_width=None):
 	import math
 	import matplotlib.pyplot as plt
 	import numpy as np
-	
+
+	# closes previously opened figure. preventing a
+	# warning after opening too many figures
+	plt.close()
+
+	# creates new figure 
+	plt.figure()
+
+    # turns 1D X array into 2D
+	if X.ndim == 1:
+		X = np.reshape(X, (-1,X.shape[0]))
+
 	# Set example_width automatically if not passed in
 	if not example_width or not 'example_width' in locals():
 		example_width = int(round(math.sqrt(X.shape[1])))
