@@ -8,11 +8,11 @@ def costFunction(theta, X, y, return_grad=False):
     from sigmoid import sigmoid
 
     # Initialize some useful values
-    m = len(y); # number of training examples
+    m = len(y) # number of training examples
 
     # You need to return the following variables correctly 
-    J = 0;
-    grad = np.zeros(theta.shape);
+    J = 0
+    grad = np.zeros(theta.shape)
 
     # ====================== YOUR CODE HERE ======================
     # Instructions: Compute the cost of a particular choice of theta.
@@ -51,7 +51,7 @@ def costFunction(theta, X, y, return_grad=False):
     #   X.shape = (m, n+1), 
     # and we obtain a (1, n+1) vector, which we also transpose
     # this last vectorized multiplication takes care of the sum
-    grad = (1./m) * np.dot(sigmoid( np.dot(X,theta) ).T - y, X).T;
+    grad = (1./m) * np.dot(sigmoid( np.dot(X,theta) ).T - y, X).T
 
     if return_grad == True:
         return J, np.transpose(grad)

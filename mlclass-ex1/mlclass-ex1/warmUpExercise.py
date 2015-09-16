@@ -14,7 +14,7 @@ def warmUpExercise(*args, **kwargs):
 #               and then set them accordingly. 
 
 
-    return numpy.identity(5);
+    return numpy.identity(5)
 
 
 # ===========================================

@@ -7,10 +7,10 @@ def computeCost(X, y, theta):
     #   parameter for linear regression to fit the data points in X and y
 
     # Initialize some useful values
-    m = len(y); # number of training examples
+    m = len(y) # number of training examples
 
     # You need to return the following variables correctly 
-    J = 0;
+    J = 0
 
     # ====================== YOUR CODE HERE ======================
     # Instructions: Compute the cost of a particular choice of theta

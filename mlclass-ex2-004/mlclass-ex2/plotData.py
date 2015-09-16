@@ -13,8 +13,8 @@ def plotData(X, y):
 #
 
     # Find Indices of Positive and Negative Examples
-    pos = np.where(y==1);
-    neg = np.where(y==0);
+    pos = np.where(y==1)
+    neg = np.where(y==0)
 
     # plot! [0] indexing at end necessary for proper legend creation in ex2.py
     p1 = plt.plot(X[pos,0], X[pos,1], marker='+', markersize=9, color='k')[0]

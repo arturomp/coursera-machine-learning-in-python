@@ -6,7 +6,7 @@ def gradientDescent(X, y, theta, alpha, num_iters):
     #   taking num_iters gradient steps with learning rate alpha
 
     # Initialize some useful values
-    m = len(y); # number of training examples
+    m = len(y) # number of training examples
     J_history = np.zeros((num_iters, 1))
 
     for i in xrange(num_iters):
@@ -25,7 +25,7 @@ def gradientDescent(X, y, theta, alpha, num_iters):
 
         # Save the cost J in every iteration    
         import computeCost as cc
-        J_history[i] = cc.computeCost(X, y, theta);
+        J_history[i] = cc.computeCost(X, y, theta)
         # print(J_history[i])
 
     return theta

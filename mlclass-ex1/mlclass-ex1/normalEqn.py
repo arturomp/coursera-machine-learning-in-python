@@ -4,7 +4,7 @@ def normalEqn(X, y):
 #   regression using the normal equations.
     
     import numpy as np 
-    theta = np.zeros((X.shape[1], 1)); 
+    theta = np.zeros((X.shape[1], 1))
 
 # ====================== YOUR CODE HERE ======================
 # Instructions: Complete the code to compute the closed form solution

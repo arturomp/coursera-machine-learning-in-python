@@ -55,20 +55,20 @@ raw_input('Program paused. Press enter to continue.\n')
 
 # Note that mapFeature also adds a column of ones for us, so the intercept
 # term is handled
-X = mf.mapFeature(X[:,0], X[:,1]);
+X = mf.mapFeature(X[:,0], X[:,1])
 m,n = X.shape
 
 # Initialize fitting parameters
-initial_theta = np.zeros((n, 1));
+initial_theta = np.zeros((n, 1))
 
 # Set regularization parameter lambda to 1
 lambda_reg = 0.1
 
 # Compute and display initial cost 
 # gradient is too large to display in this exercise
-cost = cfr.costFunctionReg(initial_theta, X, y, lambda_reg);
+cost = cfr.costFunctionReg(initial_theta, X, y, lambda_reg)
 
-print('Cost at initial theta (zeros): {:f}'.format(cost));
+print('Cost at initial theta (zeros): {:f}'.format(cost))
 # print('Gradient at initial theta (zeros):')
 # print(grad)
 
@@ -86,10 +86,10 @@ raw_input('Program paused. Press enter to continue.\n')
 #  the training set accuracy vary?
 
 # Initialize fitting parameters
-initial_theta = np.zeros((n, 1));
+initial_theta = np.zeros((n, 1))
 
 # Set regularization parameter lambda to 1 (you should vary this)
-lambda_reg = 1;
+lambda_reg = 1
 
 #  Run fmin_bfgs to obtain the optimal theta
 #  This function returns theta and the cost 
@@ -107,7 +107,7 @@ plt.title('lambda = {:f}'.format(lambda_reg))
 # % Compute accuracy on our training set
 p = pr.predict(theta, X)
 
-print('Train Accuracy: {:f}'.format(np.mean(p == y) * 100));
+print('Train Accuracy: {:f}'.format(np.mean(p == y) * 100))
 
 raw_input('Program paused. Press enter to continue.\n')
 

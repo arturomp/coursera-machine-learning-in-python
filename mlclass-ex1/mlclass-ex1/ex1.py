@@ -47,7 +47,7 @@ raw_input('Program paused. Press enter to continue.\n')
 print('Running Gradient Descent...')
 
 X_padded = np.column_stack((np.ones((m,1)), X)) # Add a column of ones to x
-theta = np.zeros((2, 1)); # initialize fitting parameters
+theta = np.zeros((2, 1)) # initialize fitting parameters
 
 # Some gradient descent settings
 iterations = 1500

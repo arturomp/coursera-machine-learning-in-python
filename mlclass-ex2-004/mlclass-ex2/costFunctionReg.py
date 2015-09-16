@@ -8,7 +8,7 @@ def costFunctionReg(theta, X, y, lambda_reg, return_grad=False):
     from sigmoid import sigmoid
 
     # Initialize some useful values
-    m = len(y); # number of training examples
+    m = len(y) # number of training examples
 
     # You need to return the following variables correctly 
     J = 0

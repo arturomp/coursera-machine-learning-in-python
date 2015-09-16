@@ -51,7 +51,7 @@ alpha = 0.01
 num_iters = 400
 
 # Init Theta and Run Gradient Descent 
-theta = np.zeros((3, 1)); 
+theta = np.zeros((3, 1)) 
 
 import gradientDescentMulti as gdm
 theta, J_history = gdm.gradientDescentMulti(X_padded, y, theta, alpha, num_iters)
