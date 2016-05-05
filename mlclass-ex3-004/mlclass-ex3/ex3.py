@@ -13,6 +13,7 @@
 #     predict.py
 #
 
+import scipy.io
 import numpy as np
 import displayData as dd
 import oneVsAll as ova
@@ -31,18 +32,17 @@ num_labels = 10          # 10 labels, from 1 to 10
 # Load Training Data
 print('Loading and Visualizing Data ...')
 
-import scipy.io
 mat = scipy.io.loadmat('ex3data1.mat')
 
 X = mat["X"]
 y = mat["y"]
 
+m = X.shape[0]
+
 # crucial step in getting good performance!
 # changes the dimension from (m,1) to (m,)
 # otherwise the minimization isn't very effective...
 y=y.flatten() 
-
-m = X.shape[0]
 
 # Randomly select 100 data points to display
 rand_indices = np.random.permutation(m)
