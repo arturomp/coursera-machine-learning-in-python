@@ -15,6 +15,7 @@
 import scipy.io
 import numpy as np
 import displayData as dd
+import nnCostFunction as nncf
 
 ## Setup the parameters you will use for this exercise
 input_layer_size  = 400;  # 20x20 Input Images of Digits
@@ -67,31 +68,30 @@ Theta2 = mat["Theta2"]
 # np.append() always makes a copy (http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.append.html)
 nn_params = np.concatenate((Theta1.reshape(Theta1.size, order='F'), Theta2.reshape(Theta2.size, order='F')))
 
-# ## ================ Part 3: Compute Cost (Feedforward) ================
-# #  To the neural network, you should first start by implementing the
-# #  feedforward part of the neural network that returns the cost only. You
-# #  should complete the code in nnCostFunction.m to return cost. After
-# #  implementing the feedforward to compute the cost, you can verify that
-# #  your implementation is correct by verifying that you get the same cost
-# #  as us for the fixed debugging parameters.
-# #
-# #  We suggest implementing the feedforward cost *without* regularization
-# #  first so that it will be easier for you to debug. Later, in part 4, you
-# #  will get to implement the regularized cost.
-# #
-# print('\nFeedforward Using Neural Network ...\n')
+## ================ Part 3: Compute Cost (Feedforward) ================
+#  To the neural network, you should first start by implementing the
+#  feedforward part of the neural network that returns the cost only. You
+#  should complete the code in nnCostFunction.m to return cost. After
+#  implementing the feedforward to compute the cost, you can verify that
+#  your implementation is correct by verifying that you get the same cost
+#  as us for the fixed debugging parameters.
+#
+#  We suggest implementing the feedforward cost *without* regularization
+#  first so that it will be easier for you to debug. Later, in part 4, you
+#  will get to implement the regularized cost.
+#
+print('Feedforward Using Neural Network ...')
 
 # # Weight regularization parameter (we set this to 0 here).
-# lambda_reg = 0;
+lambda_reg = 0;
 
-# J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
-#                    num_labels, X, y, lambda_reg);
+J = nncf.nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
+                   num_labels, X, y, lambda_reg)
 
-# print(['Cost at parameters (loaded from ex4weights): %f '...
-#          '\n(this value should be about 0.287629)\n'], J);
 
-# print('\nProgram paused. Press enter to continue.\n');
-# pause;
+print('Training Set Accuracy: {:f}\n(this value should be about 0.287629)'.format(J))
+
+raw_input('Program paused. Press enter to continue.\n')
 
 # ## =============== Part 4: Implement Regularization ===============
 # #  Once your cost function implementation is correct, you should now
