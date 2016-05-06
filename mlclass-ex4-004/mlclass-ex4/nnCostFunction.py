@@ -96,18 +96,17 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
 
     J = -(1.0/m)*cost
 
+    #% REGULARIZED COST FUNCTION
+    # note that Theta1[:,1:] is necessary given that the first column corresponds to transitions
+    # from the bias terms, and we are not regularizing those parameters. Thus, we get rid
+    # of the first column.
+
+    sumOfTheta1 = np.sum(np.sum(Theta1[:,1:]**2))
+    sumOfTheta2 = np.sum(np.sum(Theta2[:,1:]**2))
+
+    J = J + ( (lambda_reg/(2.0*m))*(sumOfTheta1+sumOfTheta2) )
+
     return J
-
-    # #% REGULARIZED COST FUNCTION
-    # # note that Theta1(:,2:end) is necessary given that the first column corresponds to transitions
-    # # from the bias terms, and we are not regularizing those parameters. Thus, we get rid
-    # # of the first column.
-
-    # sumOfTheta1 = sum(sum(Theta1(:,2:end).**2));
-    # sumOfTheta2 = sum(sum(Theta2(:,2:end).**2));
-
-    # J = J + ( (lambda/(2*m))*(sumOfTheta1+sumOfTheta2) );
-
 
     # #%% BACKPROPAGATION
 
@@ -165,8 +164,8 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
     # # only regularize for j >= 1, so skip the first column
     # Theta1_grad_unregularized = Theta1_grad;
     # Theta2_grad_unregularized = Theta2_grad;
-    # Theta1_grad = Theta1_grad + (lambda/m)*Theta1;
-    # Theta2_grad = Theta2_grad + (lambda/m)*Theta2;
+    # Theta1_grad = Theta1_grad + (lambda_reg/m)*Theta1;
+    # Theta2_grad = Theta2_grad + (lambda_reg/m)*Theta2;
     # Theta1_grad(:,1) = Theta1_grad_unregularized(:,1);
     # Theta2_grad(:,1) = Theta2_grad_unregularized(:,1);
 

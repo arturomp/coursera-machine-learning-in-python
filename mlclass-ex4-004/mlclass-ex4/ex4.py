@@ -16,6 +16,8 @@ import scipy.io
 import numpy as np
 import displayData as dd
 import nnCostFunction as nncf
+import sigmoidGradient as sg
+import randInitializeWeights as riw
 
 ## Setup the parameters you will use for this exercise
 input_layer_size  = 400;  # 20x20 Input Images of Digits
@@ -93,57 +95,52 @@ print('Training Set Accuracy: {:f}\n(this value should be about 0.287629)'.forma
 
 raw_input('Program paused. Press enter to continue.\n')
 
-# ## =============== Part 4: Implement Regularization ===============
-# #  Once your cost function implementation is correct, you should now
-# #  continue to implement the regularization with the cost.
-# #
+## =============== Part 4: Implement Regularization ===============
+#  Once your cost function implementation is correct, you should now
+#  continue to implement the regularization with the cost.
+#
 
-# print('\nChecking Cost Function (w/ Regularization) ... \n')
+print('Checking Cost Function (w/ Regularization)...')
 
-# # Weight regularization parameter (we set this to 1 here).
-# lambda_reg = 1;
+# Weight regularization parameter (we set this to 1 here).
+lambda_reg = 1;
 
-# J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
-#                    num_labels, X, y, lambda_reg);
+J = nncf.nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
+                   num_labels, X, y, lambda_reg);
 
-# print(['Cost at parameters (loaded from ex4weights): %f '...
-#          '\n(this value should be about 0.383770)\n'], J);
+print('Cost at parameters (loaded from ex4weights): {:f}\n(this value should be about 0.383770)'.format(J))
 
-# print('Program paused. Press enter to continue.\n');
-# pause;
+raw_input('Program paused. Press enter to continue.\n')
 
 
-# ## ================ Part 5: Sigmoid Gradient  ================
-# #  Before you start implementing the neural network, you will first
-# #  implement the gradient for the sigmoid function. You should complete the
-# #  code in the sigmoidGradient.m file.
-# #
+## ================ Part 5: Sigmoid Gradient  ================
+#  Before you start implementing the neural network, you will first
+#  implement the gradient for the sigmoid function. You should complete the
+#  code in the sigmoidGradient.m file.
+#
 
-# print('\nEvaluating sigmoid gradient...\n')
+print('Evaluating sigmoid gradient...')
 
-# g = sigmoidGradient([1 -0.5 0 0.5 1]);
-# print('Sigmoid gradient evaluated at [1 -0.5 0 0.5 1]:\n  ');
-# print('%f ', g);
-# print('\n\n');
+g = sg.sigmoidGradient( np.array([1, -0.5, 0, 0.5, 1]) )
+print('Sigmoid gradient evaluated at [1, -0.5, 0, 0.5, 1]:')
+print('{:s}\n\n\n'.format(g))
 
-# print('Program paused. Press enter to continue.\n');
-# pause;
+raw_input('Program paused. Press enter to continue.\n')
 
 
-# ## ================ Part 6: Initializing Pameters ================
-# #  In this part of the exercise, you will be starting to implment a two
-# #  layer neural network that classifies digits. You will start by
-# #  implementing a function to initialize the weights of the neural network
-# #  (randInitializeWeights.m)
+## ================ Part 6: Initializing Pameters ================
+#  In this part of the exercise, you will be starting to implment a two
+#  layer neural network that classifies digits. You will start by
+#  implementing a function to initialize the weights of the neural network
+#  (randInitializeWeights.m)
 
-# print('\nInitializing Neural Network Parameters ...\n')
+print('Initializing Neural Network Parameters...')
 
-# initial_Theta1 = randInitializeWeights(input_layer_size, hidden_layer_size);
-# initial_Theta2 = randInitializeWeights(hidden_layer_size, num_labels);
+initial_Theta1 = riw.randInitializeWeights(input_layer_size, hidden_layer_size)
+initial_Theta2 = riw.randInitializeWeights(hidden_layer_size, num_labels)
 
-# # Unroll parameters
-# initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
-
+# Unroll parameters
+initial_nn_params = np.concatenate((initial_Theta1.reshape(initial_Theta1.size, order='F'), initial_Theta2.reshape(initial_Theta2.size, order='F')))
 
 # ## =============== Part 7: Implement Backpropagation ===============
 # #  Once your cost matches up with ours, you should proceed to implement the
