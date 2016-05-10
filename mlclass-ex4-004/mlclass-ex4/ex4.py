@@ -18,11 +18,12 @@ import displayData as dd
 import nnCostFunction as nncf
 import sigmoidGradient as sg
 import randInitializeWeights as riw
+import checkNNGradients as cnng
 
 ## Setup the parameters you will use for this exercise
-input_layer_size  = 400;  # 20x20 Input Images of Digits
-hidden_layer_size = 25;   # 25 hidden units
-num_labels = 10;          # 10 labels, from 1 to 10   
+input_layer_size  = 400  # 20x20 Input Images of Digits
+hidden_layer_size = 25   # 25 hidden units
+num_labels = 10          # 10 labels, from 1 to 10   
                           # (note that we have mapped "0" to label 10)
 
 ## =========== Part 1: Loading and Visualizing Data =============
@@ -85,9 +86,9 @@ nn_params = np.concatenate((Theta1.reshape(Theta1.size, order='F'), Theta2.resha
 print('Feedforward Using Neural Network ...')
 
 # # Weight regularization parameter (we set this to 0 here).
-lambda_reg = 0;
+lambda_reg = 0
 
-J = nncf.nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
+J, _ = nncf.nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
                    num_labels, X, y, lambda_reg)
 
 
@@ -103,10 +104,10 @@ raw_input('Program paused. Press enter to continue.\n')
 print('Checking Cost Function (w/ Regularization)...')
 
 # Weight regularization parameter (we set this to 1 here).
-lambda_reg = 1;
+lambda_reg = 1
 
-J = nncf.nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
-                   num_labels, X, y, lambda_reg);
+J, _ = nncf.nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
+                   num_labels, X, y, lambda_reg)
 
 print('Cost at parameters (loaded from ex4weights): {:f}\n(this value should be about 0.383770)'.format(J))
 
@@ -123,7 +124,7 @@ print('Evaluating sigmoid gradient...')
 
 g = sg.sigmoidGradient( np.array([1, -0.5, 0, 0.5, 1]) )
 print('Sigmoid gradient evaluated at [1, -0.5, 0, 0.5, 1]:')
-print('{:s}\n\n\n'.format(g))
+print('{:s}\n'.format(g))
 
 raw_input('Program paused. Press enter to continue.\n')
 
@@ -142,41 +143,39 @@ initial_Theta2 = riw.randInitializeWeights(hidden_layer_size, num_labels)
 # Unroll parameters
 initial_nn_params = np.concatenate((initial_Theta1.reshape(initial_Theta1.size, order='F'), initial_Theta2.reshape(initial_Theta2.size, order='F')))
 
-# ## =============== Part 7: Implement Backpropagation ===============
-# #  Once your cost matches up with ours, you should proceed to implement the
-# #  backpropagation algorithm for the neural network. You should add to the
-# #  code you've written in nnCostFunction.m to return the partial
-# #  derivatives of the parameters.
-# #
-# print('\nChecking Backpropagation... \n');
+## =============== Part 7: Implement Backpropagation ===============
+#  Once your cost matches up with ours, you should proceed to implement the
+#  backpropagation algorithm for the neural network. You should add to the
+#  code you've written in nnCostFunction.m to return the partial
+#  derivatives of the parameters.
+#
+print('Checking Backpropagation... ')
 
-# #  Check gradients by running checkNNGradients
-# checkNNGradients;
+#  Check gradients by running checkNNGradients
+cnng.checkNNGradients()
 
-# print('\nProgram paused. Press enter to continue.\n');
-# pause;
+raw_input('Program paused. Press enter to continue.\n')
 
 
-# ## =============== Part 8: Implement Regularization ===============
-# #  Once your backpropagation implementation is correct, you should now
-# #  continue to implement the regularization with the cost and gradient.
-# #
+## =============== Part 8: Implement Regularization ===============
+#  Once your backpropagation implementation is correct, you should now
+#  continue to implement the regularization with the cost and gradient.
+#
 
-# print('\nChecking Backpropagation (w/ Regularization) ... \n')
+print('\nChecking Backpropagation (w/ Regularization) ... \n')
 
-# #  Check gradients by running checkNNGradients
-# lambda_reg = 3;
-# checkNNGradients(lambda_reg);
+#  Check gradients by running checkNNGradients
+lambda_reg = 3
+cnng.checkNNGradients(lambda_reg)
 
-# # Also output the costFunction debugging values
-# debug_J  = nnCostFunction(nn_params, input_layer_size, ...
-#                           hidden_layer_size, num_labels, X, y, lambda_reg);
+# Also output the costFunction debugging values
+debug_J, _  = nncf.nnCostFunction(nn_params, input_layer_size, \
+                          hidden_layer_size, num_labels, X, y, lambda_reg)
 
-# print(['\n\nCost at (fixed) debugging parameters (w/ lambda_reg = 10): %f ' ...
-#          '\n(this value should be about 0.576051)\n\n'], debug_J);
+print('\n\nCost at (fixed) debugging parameters (w/ lambda_reg = 3): {:f} ' \
+         '\n(this value should be about 0.576051)\n\n'.format(debug_J))
 
-# print('Program paused. Press enter to continue.\n');
-# pause;
+raw_input('Program paused. Press enter to continue.\n')
 
 
 # ## =================== Part 8: Training NN ===================
@@ -190,30 +189,30 @@ initial_nn_params = np.concatenate((initial_Theta1.reshape(initial_Theta1.size, 
 
 # #  After you have completed the assignment, change the MaxIter to a larger
 # #  value to see how more training helps.
-# options = optimset('MaxIter', 200);
+# options = optimset('MaxIter', 200)
 
 # #  You should also try different values of lambda_reg
-# lambda_reg = 0.1;
+# lambda_reg = 0.1
 
 # # Create "short hand" for the cost function to be minimized
 # costFunction = @(p) nnCostFunction(p, ...
 #                                    input_layer_size, ...
 #                                    hidden_layer_size, ...
-#                                    num_labels, X, y, lambda_reg);
+#                                    num_labels, X, y, lambda_reg)
 
 # # Now, costFunction is a function that takes in only one argument (the
 # # neural network parameters)
-# [nn_params, cost] = fmincg(costFunction, initial_nn_params, options);
+# [nn_params, cost] = fmincg(costFunction, initial_nn_params, options)
 
 # # Obtain Theta1 and Theta2 back from nn_params
 # Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
-#                  hidden_layer_size, (input_layer_size + 1));
+#                  hidden_layer_size, (input_layer_size + 1))
 
 # Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
-#                  num_labels, (hidden_layer_size + 1));
+#                  num_labels, (hidden_layer_size + 1))
 
-# print('Program paused. Press enter to continue.\n');
-# pause;
+# print('Program paused. Press enter to continue.\n')
+# pause
 
 
 # ## ================= Part 9: Visualize Weights =================
@@ -223,10 +222,10 @@ initial_nn_params = np.concatenate((initial_Theta1.reshape(initial_Theta1.size, 
 
 # print('\nVisualizing Neural Network... \n')
 
-# displayData(Theta1(:, 2:end));
+# displayData(Theta1(:, 2:end))
 
-# print('\nProgram paused. Press enter to continue.\n');
-# pause;
+# print('\nProgram paused. Press enter to continue.\n')
+# pause
 
 # ## ================= Part 10: Implement Predict =================
 # #  After training the neural network, we would like to use it to predict
@@ -234,8 +233,8 @@ initial_nn_params = np.concatenate((initial_Theta1.reshape(initial_Theta1.size, 
 # #  neural network to predict the labels of the training set. This lets
 # #  you compute the training set accuracy.
 
-# pred = predict(Theta1, Theta2, X);
+# pred = predict(Theta1, Theta2, X)
 
-# print('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
+# print('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100)
 
 
