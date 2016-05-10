@@ -26,7 +26,7 @@ def oneVsAll(X, y, num_labels, lambda_reg):
     #               parameter lambda. 
     #
 
-    for c in range(num_labels):
+    for c in xrange(num_labels):
 
     	# initial theta for c/class
     	initial_theta = np.zeros((n + 1, 1))

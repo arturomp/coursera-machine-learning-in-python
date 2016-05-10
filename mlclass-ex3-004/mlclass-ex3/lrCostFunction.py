@@ -41,9 +41,9 @@ def lrCostFunction(theta, X, y, lambda_reg, return_grad=False):
     sys.stdout.write("Cost: %f   \r" % (J) )
     sys.stdout.flush()
 
-    if return_grad == True:
+    if return_grad:
         return J, grad.flatten()
-    elif return_grad == False:
+    else:
         return J
 
     # =============================================================
