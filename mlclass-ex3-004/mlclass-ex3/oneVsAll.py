@@ -1,3 +1,7 @@
+import numpy as np
+import lrCostFunction as lrcf
+from scipy.optimize import minimize
+
 def oneVsAll(X, y, num_labels, lambda_reg):
 #ONEVSALL trains multiple logistic regression classifiers and returns all
 #the classifiers in a matrix all_theta, where the i-th row of all_theta 
@@ -7,9 +11,6 @@ def oneVsAll(X, y, num_labels, lambda_reg):
 #   in a matrix all_theta, where the i-th row of all_theta corresponds 
 #   to the classifier for label i
 
-    import numpy as np
-    import lrCostFunction as lrcf
-    from scipy.optimize import minimize
 
     # Some useful variables
     m, n = X.shape

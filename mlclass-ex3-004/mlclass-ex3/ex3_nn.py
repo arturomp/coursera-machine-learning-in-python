@@ -75,7 +75,7 @@ raw_input('Program paused. Press enter to continue.\n')
 #  Randomly permute examples
 rp = np.random.permutation(m)
 
-for i in range(m):
+for i in xrange(m):
 
     # Display 
     print('Displaying Example Image')

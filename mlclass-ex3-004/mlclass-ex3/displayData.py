@@ -1,12 +1,12 @@
+import math
+import matplotlib.pyplot as plt
+import numpy as np
+
 def displayData(X, example_width=None):
 #DISPLAYDATA Display 2D data in a nice grid
 #   [h, display_array] = DISPLAYDATA(X, example_width) displays 2D data
 #   stored in X in a nice grid. It returns the figure handle h and the 
 #   displayed array if requested.
-
-	import math
-	import matplotlib.pyplot as plt
-	import numpy as np
 
 	# closes previously opened figure. preventing a
 	# warning after opening too many figures
@@ -42,8 +42,8 @@ def displayData(X, example_width=None):
 
 	# Copy each example into a patch on the display array
 	curr_ex = 1
-	for j in range(1,display_rows+1):
-		for i in range (1,display_cols+1):
+	for j in xrange(1,display_rows+1):
+		for i in xrange (1,display_cols+1):
 			if curr_ex > m:
 				break
 		

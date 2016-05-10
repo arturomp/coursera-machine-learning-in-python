@@ -43,8 +43,8 @@ def plotDecisionBoundary(theta, X, y):
 
         z = np.zeros(( len(u), len(v) ))
         # Evaluate z = theta*x over the grid
-        for i in range(len(u)):
-            for j in range(len(v)):
+        for i in xrange(len(u)):
+            for j in xrange(len(v)):
                 z[i,j] = np.dot(mf.mapFeature(np.array([u[i]]), np.array([v[j]])),theta)
         z = np.transpose(z) # important to transpose z before calling contour
 
