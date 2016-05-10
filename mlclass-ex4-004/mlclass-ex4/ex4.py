@@ -19,6 +19,8 @@ import nnCostFunction as nncf
 import sigmoidGradient as sg
 import randInitializeWeights as riw
 import checkNNGradients as cnng
+from scipy.optimize import minimize
+import predict as pr
 
 ## Setup the parameters you will use for this exercise
 input_layer_size  = 400  # 20x20 Input Images of Digits
@@ -178,63 +180,62 @@ print('\n\nCost at (fixed) debugging parameters (w/ lambda_reg = 3): {:f} ' \
 raw_input('Program paused. Press enter to continue.\n')
 
 
-# ## =================== Part 8: Training NN ===================
-# #  You have now implemented all the code necessary to train a neural 
-# #  network. To train your neural network, we will now use "fmincg", which
-# #  is a function which works similarly to "fminunc". Recall that these
-# #  advanced optimizers are able to train our cost functions efficiently as
-# #  long as we provide them with the gradient computations.
-# #
-# print('\nTraining Neural Network... \n')
+## =================== Part 8: Training NN ===================
+#  You have now implemented all the code necessary to train a neural 
+#  network. To train your neural network, we will now use "fmincg", which
+#  is a function which works similarly to "fminunc". Recall that these
+#  advanced optimizers are able to train our cost functions efficiently as
+#  long as we provide them with the gradient computations.
+#
+print('Training Neural Network...')
 
-# #  After you have completed the assignment, change the MaxIter to a larger
-# #  value to see how more training helps.
-# options = optimset('MaxIter', 200)
+#  After you have completed the assignment, change the MaxIter to a larger
+#  value to see how more training helps.
+#  You should also try different values of lambda_reg
+maxiter = 20
+lambda_reg = 0.1
+myargs = (input_layer_size, hidden_layer_size, num_labels, X, y, lambda_reg)
+results = minimize(nncf.nnCostFunction, x0=nn_params, args=myargs, options={'disp': True, 'maxiter':maxiter}, method="CG", jac=True)
 
-# #  You should also try different values of lambda_reg
-# lambda_reg = 0.1
+nn_params = results["x"]
 
-# # Create "short hand" for the cost function to be minimized
-# costFunction = @(p) nnCostFunction(p, ...
-#                                    input_layer_size, ...
-#                                    hidden_layer_size, ...
-#                                    num_labels, X, y, lambda_reg)
+# Obtain Theta1 and Theta2 back from nn_params
+Theta1 = np.reshape(nn_params[:hidden_layer_size * (input_layer_size + 1)], \
+                 (hidden_layer_size, input_layer_size + 1), order='F')
 
-# # Now, costFunction is a function that takes in only one argument (the
-# # neural network parameters)
-# [nn_params, cost] = fmincg(costFunction, initial_nn_params, options)
+Theta2 = np.reshape(nn_params[hidden_layer_size * (input_layer_size + 1):], \
+                 (num_labels, hidden_layer_size + 1), order='F')
 
-# # Obtain Theta1 and Theta2 back from nn_params
-# Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
-#                  hidden_layer_size, (input_layer_size + 1))
-
-# Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
-#                  num_labels, (hidden_layer_size + 1))
-
-# print('Program paused. Press enter to continue.\n')
-# pause
+raw_input('Program paused. Press enter to continue.\n')
 
 
-# ## ================= Part 9: Visualize Weights =================
-# #  You can now "visualize" what the neural network is learning by 
-# #  displaying the hidden units to see what features they are capturing in 
-# #  the data.
+## ================= Part 9: Visualize Weights =================
+#  You can now "visualize" what the neural network is learning by 
+#  displaying the hidden units to see what features they are capturing in 
+#  the data.
 
-# print('\nVisualizing Neural Network... \n')
+print('\nVisualizing Neural Network... \n')
 
-# displayData(Theta1(:, 2:end))
+dd.displayData(Theta1[:, 1:])
 
-# print('\nProgram paused. Press enter to continue.\n')
-# pause
+raw_input('Program paused. Press enter to continue.\n')
 
-# ## ================= Part 10: Implement Predict =================
-# #  After training the neural network, we would like to use it to predict
-# #  the labels. You will now implement the "predict" function to use the
-# #  neural network to predict the labels of the training set. This lets
-# #  you compute the training set accuracy.
+## ================= Part 10: Implement Predict =================
+#  After training the neural network, we would like to use it to predict
+#  the labels. You will now implement the "predict" function to use the
+#  neural network to predict the labels of the training set. This lets
+#  you compute the training set accuracy.
 
-# pred = predict(Theta1, Theta2, X)
+pred = pr.predict(Theta1, Theta2, X)
 
-# print('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100)
+# uncomment to see the predictions that don't match
+fmt = '{}   {}'
+print(fmt.format('y', 'pred'))
+for y_elem, pred_elem in zip(y, pred):
+    if y_elem != pred_elem:
+        print(fmt.format(y_elem, pred_elem))
+
+print('Training Set Accuracy: {:f}'.format( ( np.mean(pred == y)*100 ) ) )
+
 
 
