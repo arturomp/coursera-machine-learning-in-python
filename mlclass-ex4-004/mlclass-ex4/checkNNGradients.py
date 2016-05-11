@@ -29,12 +29,13 @@ def checkNNGradients(lambda_reg=0):
     # Unroll parameters
     nn_params = np.concatenate((Theta1.reshape(Theta1.size, order='F'), Theta2.reshape(Theta2.size, order='F')))
 
-    # might update code below to use a closure to keep code similar to MATLAB's
-    # and to simplify computeNumericalGradient()
-    _, grad = nncf.nnCostFunction(nn_params, input_layer_size, hidden_layer_size, \
+    # Short hand for cost function
+    def costFunc(p):
+        return nncf.nnCostFunction(p, input_layer_size, hidden_layer_size, \
                    num_labels, X, y, lambda_reg)
-    numgrad = cng.computeNumericalGradient(nn_params, input_layer_size, hidden_layer_size, \
-                   num_labels, X, y, lambda_reg)
+
+    _, grad = costFunc(nn_params)
+    numgrad = cng.computeNumericalGradient(costFunc, nn_params)
 
     # Visually examine the two gradient computations.  The two columns
     # you get should be very similar. 
