@@ -22,7 +22,6 @@ import numpy as np
 from scipy.optimize import fmin
 from scipy.optimize import fmin_bfgs
 
-
 ## Load Data
 #  The first two columns contains the exam scores and the third column
 #  contains the label.

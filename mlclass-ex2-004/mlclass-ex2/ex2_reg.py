@@ -111,4 +111,3 @@ print('Train Accuracy: {:f}'.format(np.mean(p == y) * 100))
 
 raw_input('Program paused. Press enter to continue.\n')
 
-
