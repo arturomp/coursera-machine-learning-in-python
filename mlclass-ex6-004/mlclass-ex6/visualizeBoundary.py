@@ -17,7 +17,7 @@ def visualizeBoundary(X, y, model, varargin=0):
     x2plot = np.linspace(X[:,1].min(), X[:,1].max(), 100).T
     X1, X2 = np.meshgrid(x1plot, x2plot)
     vals = np.zeros(X1.shape)
-    for i in range(X1.shape[1]):
+    for i in xrange(X1.shape[1]):
        this_X = np.column_stack((X1[:, i], X2[:, i]))
        vals[:, i] = model.predict(gkgm.gaussianKernelGramMatrix(this_X, X))
 

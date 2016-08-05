@@ -68,7 +68,7 @@ def dataset3Params(X, y, Xval, yval):
     # calculate mins of columns with their indexes
     row = predictionErrors.argmin(axis=0)
     m   = np.zeros(row.shape)
-    for i in range(len(m)):
+    for i in xrange(len(m)):
         m[i] = predictionErrors[row[i]][i]
 
 
