@@ -1,6 +1,4 @@
 
-Coursera ml 2014 certificate.pdf
-
 *.mp4
 
 *.srt
@@ -12,6 +10,8 @@ Coursera ml 2014 certificate.pdf
 *.pyc
 
 *.mat
+
+*.dat
 
 mlclass-ex4-004/mlclass-ex4/octave-core
 
@@ -25,8 +25,6 @@ mlclass-ex8-004/mlclass-ex8/octave-core
 
 mlclass-ex2-004/mlclass-ex2/pos.ps
 
-*.pdf
-
 mlclass-ex4-004/mlclass-ex4/octave-workspace
 
 mlclass-ex4-004/mlclass-ex4/ex4_multiminimize.py
@@ -37,6 +35,7 @@ mlclass-ex7-004/mlclass-ex7/octave-workspace
 
 mlclass-ex6-004/mlclass-ex6/octave-workspace
 
-*.dat
-
 mlclass-ex6-004/mlclass-ex6/featureNormalize.py
+
+mlclass-ex7-004/mlclass-ex7/plotDataPoints_experiments.py
+*.pdf
