@@ -25,8 +25,8 @@ def runkMeans(X, initial_centroids, max_iters, plot_progress=False):
     #     plot_progress = False
 
     # Plot the data if we are plotting progress
-    if plot_progress:
-        plt.hold(True)
+    # if plot_progress:
+    #     plt.hold(True)
 
     # Initialize values
     m, n = X.shape
@@ -34,6 +34,13 @@ def runkMeans(X, initial_centroids, max_iters, plot_progress=False):
     centroids = initial_centroids
     previous_centroids = centroids
     idx = np.zeros((m, 1))
+
+    # if plotting, set up the space for interactive graphs
+    # http://stackoverflow.com/a/4098938/583834
+    # http://matplotlib.org/faq/usage_faq.html#what-is-interactive-mode
+    if plot_progress:
+        plt.close()
+        plt.ion()
 
     # Run K-Means
     for i in xrange(max_iters):
@@ -46,10 +53,10 @@ def runkMeans(X, initial_centroids, max_iters, plot_progress=False):
         idx = fcc.findClosestCentroids(X, centroids)
         
         # Optionally, plot progress here
-        # if plot_progress:
-        #     ppkm.plotProgresskMeans(X, centroids, previous_centroids, idx, K, i)
-        #     previous_centroids = centroids
-        #     raw_input('Press enter to continue.')
+        if plot_progress:
+            ppkm.plotProgresskMeans(X, centroids, previous_centroids, idx, K, i)
+            previous_centroids = centroids
+            raw_input('Press enter to continue.')
         
         # Given the memberships, compute new centroids
         centroids = cc.computeCentroids(X, idx, K)
@@ -57,8 +64,8 @@ def runkMeans(X, initial_centroids, max_iters, plot_progress=False):
     # Hold off if we are plotting progress
     print('\n')
 
-    if plot_progress:
-        plt.hold(False)
+    # if plot_progress:
+    #     plt.hold(False)
 
     return centroids, idx
 
