@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# python adaptation of solved ex7.m
+# python adaptation of solved ex7_pca.m
 # 
 
 #  Principle Component Analysis and K-Means Clustering
