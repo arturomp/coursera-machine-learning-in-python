@@ -21,7 +21,7 @@ def plotProgresskMeans(X, centroids, previous, idx, K, i):
 
     # Plot the history of the centroids with lines
     for j in xrange(centroids.shape[0]):
-        dl.drawLine(centroids[j, :], previous[j, :])
+        dl.drawLine(centroids[j, :], previous[j, :], c='b')
 
     # Title
     plt.title('Iteration number {:d}'.format(i+1))
