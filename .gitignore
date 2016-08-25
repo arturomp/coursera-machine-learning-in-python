@@ -13,32 +13,18 @@
 
 *.dat
 
-mlclass-ex4-004/mlclass-ex4/octave-core
-
-mlclass-ex1/mlclass-ex1/octave-core
-
-mlclass-ex5-004/mlclass-ex5/octave-core
-
-mlclass-ex6-004/mlclass-ex6/octave-core
-
-mlclass-ex8-004/mlclass-ex8/octave-core
-
 mlclass-ex2-004/mlclass-ex2/pos.ps
-
-mlclass-ex4-004/mlclass-ex4/octave-workspace
 
 mlclass-ex4-004/mlclass-ex4/ex4_multiminimize.py
 
 mlclass-ex2-004/p*
-
-mlclass-ex7-004/mlclass-ex7/octave-workspace
-
-mlclass-ex6-004/mlclass-ex6/octave-workspace
 
 mlclass-ex6-004/mlclass-ex6/featureNormalize.py
 
 mlclass-ex7-004/mlclass-ex7/plotDataPoints_experiments.py
 
 mlclass-ex7-004/mlclass-ex7/graph*
+
+mlclass*/mlclass*/octave*
 
 *.pdf
