@@ -14,7 +14,7 @@ def trainLinearReg(X, y, lambda_val):
     # Initialize Theta
     initial_theta = np.zeros((X.shape[1], 1))
 
-    # Create "short hand" for the cost function to be minimized
+    # Short hand for cost function to be minimized
     def costFunc(theta):
         return lrcf.linearRegCostFunction(X, y, theta, lambda_val, True)
 
