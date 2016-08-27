@@ -5,15 +5,19 @@
 # Linear regression with multiple variables
 # 
 # depends on 
-#   - warmUpExercise.py
-#   - ex1data1.txt
-#   - plotData.py
-#   - computeCost.py
-#   - gradientDescent.py
+#   - featureNormalize.py
+#   - gradientDescentMulti.py
+#   - normalEqn.py
+#
 
 ## Initialization
 
 import numpy as np 
+import matplotlib.pyplot as plt
+import featureNormalize as fn
+import gradientDescentMulti as gdm
+import normalEqn as ne
+
 
 ## ================ Part 1: Feature Normalization ================
 
@@ -35,7 +39,6 @@ raw_input('Program paused. Press enter to continue.\n')
 # Scale features and set them to zero mean
 print('Normalizing Features...')
 
-import featureNormalize as fn
 X_norm, mu, sigma = fn.featureNormalize(X)
 
 # Add intercept term to X
@@ -53,11 +56,9 @@ num_iters = 400
 # Init Theta and Run Gradient Descent 
 theta = np.zeros((3, 1)) 
 
-import gradientDescentMulti as gdm
 theta, J_history = gdm.gradientDescentMulti(X_padded, y, theta, alpha, num_iters)
 
 # Plot the convergence graph
-import matplotlib.pyplot as plt
 plt.plot(xrange(J_history.size), J_history, "-b", linewidth=2 )
 plt.xlabel('Number of iterations')
 plt.ylabel('Cost J')
@@ -108,7 +109,6 @@ m = len(y) # number of training examples
 X_padded = np.column_stack((np.ones((m,1)), X)) 
 
 # Calculate the parameters from the normal equation
-import normalEqn as ne
 theta = ne.normalEqn(X_padded, y)
 
 # Display normal equation's result

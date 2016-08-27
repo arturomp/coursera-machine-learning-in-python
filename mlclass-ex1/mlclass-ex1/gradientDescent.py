@@ -1,6 +1,7 @@
+import numpy as np
+
 def gradientDescent(X, y, theta, alpha, num_iters):
 
-    import numpy as np
     #GRADIENTDESCENT Performs gradient descent to learn theta
     #   theta = GRADIENTDESENT(X, y, theta, alpha, num_iters) updates theta by 
     #   taking num_iters gradient steps with learning rate alpha

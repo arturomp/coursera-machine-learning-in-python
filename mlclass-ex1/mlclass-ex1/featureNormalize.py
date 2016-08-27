@@ -1,3 +1,5 @@
+import numpy as np 
+
 def featureNormalize(X):
 #FEATURENORMALIZE Normalizes the features in X 
 #   FEATURENORMALIZE(X) returns a normalized version of X where
@@ -5,7 +7,6 @@ def featureNormalize(X):
 #   is 1. This is often a good preprocessing step to do when
 #   working with learning algorithms.
 
-    import numpy as np 
 
     # You need to set these values correctly
     X_norm = X

@@ -1,6 +1,7 @@
+import numpy as np
+
 def computeCost(X, y, theta):
 
-    import numpy as np
 
     #COMPUTECOST Compute cost for linear regression
     #   J = COMPUTECOST(X, y, theta) computes the cost of using theta as the

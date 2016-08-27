@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 def plotData(x, y):
 #PLOTDATA Plots the data points x and y into a new figure 
 #   PLOTDATA(x,y) plots the data points and gives the figure axes labels of
@@ -13,7 +15,6 @@ def plotData(x, y):
 
     # fig = plt.figure() # open a new figure window
     
-    import matplotlib.pyplot as plt
 
     plt.plot(x,y,'rx', markersize=10, label='Training data')
     plt.xlabel('Population of City in 10,000s')

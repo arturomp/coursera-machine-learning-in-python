@@ -1,6 +1,8 @@
+import numpy as np
+import computeCost as cc
+
 def gradientDescentMulti(X, y, theta, alpha, num_iters):
 
-    import numpy as np
     #GRADIENTDESCENTMULTI Performs gradient descent to learn theta
     #   theta = GRADIENTDESCENTMULTI(x, y, theta, alpha, num_iters) updates theta by
     #   taking num_iters gradient steps with learning rate alpha
@@ -24,7 +26,6 @@ def gradientDescentMulti(X, y, theta, alpha, num_iters):
         # ============================================================
 
         # Save the cost J in every iteration    
-        import computeCost as cc
         J_history[i] = cc.computeCost(X, y, theta)
         # print(J_history[i])
 

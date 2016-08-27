@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import numpy
+import numpy as np
 
 def warmUpExercise(*args, **kwargs):
 
@@ -14,7 +14,7 @@ def warmUpExercise(*args, **kwargs):
 #               and then set them accordingly. 
 
 
-    return numpy.identity(5)
+    return np.identity(5)
 
 
 # ===========================================
