@@ -1,6 +1,6 @@
 import numpy as np
-import computeNumericalGradient as cng
 import cofiCostFunc as ccf
+import computeNumericalGradient as cng
 
 def checkCostFunction(lambda_var=0):
     #CHECKCOSTFUNCTION Creates a collaborative filering problem 
