@@ -1,5 +1,4 @@
 import numpy as np
-import nnCostFunction as nncf
 
 def computeNumericalGradient(J, theta):
     #COMPUTENUMERICALGRADIENT Computes the gradient using "finite differences"
