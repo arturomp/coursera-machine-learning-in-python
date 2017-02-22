@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import plotData as pd
 import numpy as np
-from sklearn import svm
 import gaussianKernelGramMatrix as gkgm
 
 def visualizeBoundary(X, y, model, varargin=0):
