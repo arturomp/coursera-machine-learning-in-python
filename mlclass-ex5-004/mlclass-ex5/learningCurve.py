@@ -31,8 +31,7 @@ def learningCurve(X, y, Xval, yval, lambda_val):
         y_train = y[:i]
 
         # learn theta parameters with current X_train and y_train
-        #   note that for learning, we use lambda_val = 1 as the last argument
-        theta = tlr.trainLinearReg(X_train, y_train, 1)
+        theta = tlr.trainLinearReg(X_train, y_train, lambda_val)
 
         # fill in error_train(i) and error_val(i)
         #   note that for error computation, we set lambda_val = 0 in the last argument

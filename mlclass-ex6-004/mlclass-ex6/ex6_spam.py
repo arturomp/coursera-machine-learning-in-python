@@ -72,6 +72,8 @@ mat = scipy.io.loadmat('spamTrain.mat')
 X = mat["X"]
 y = mat["y"]
 
+y = y.flatten()
+
 print('Training Linear SVM (Spam Classification)')
 print('(this may take 1 to 2 minutes) ...')
 
@@ -91,6 +93,8 @@ raw_input('Training Accuracy: {:f}'.format( np.mean((p == y).astype(int)) * 100 
 mat = scipy.io.loadmat('spamTest.mat')
 Xtest = mat["Xtest"]
 ytest = mat["ytest"]
+
+ytest = ytest.flatten()
 
 print('Evaluating the trained Linear SVM on a test set ...')
 

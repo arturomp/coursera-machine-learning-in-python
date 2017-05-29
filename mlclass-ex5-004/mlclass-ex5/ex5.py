@@ -194,12 +194,12 @@ plt.show(block=False)
 
 plt.figure(2)
 error_train, error_val = lc.learningCurve(X_poly, y, X_poly_val, yval, lambda_val)
-p1, p2 = plt.plot(range(m), error_train, range(m), error_val)
+p1, p2 = plt.plot(range(1,m+1), error_train, range(1,m+1), error_val)
 
 plt.title('Polynomial Regression Learning Curve (lambda = {:f})'.format(lambda_val))
 plt.xlabel('Number of training examples')
 plt.ylabel('Error')
-plt.axis([0, 13, 0, 100])
+plt.axis([0, 13, 0, 50])
 plt.legend((p1, p2), ('Train', 'Cross Validation'))
 plt.show(block=False)
 
@@ -219,7 +219,7 @@ raw_input('Program paused. Press enter to continue.\n')
 lambda_vec, error_train, error_val = vc.validationCurve(X_poly, y, X_poly_val, yval)
 
 plt.close('all')
-p1, p1 = plt.plot(lambda_vec, error_train, lambda_vec, error_val)
+p1, p2 = plt.plot(lambda_vec, error_train, lambda_vec, error_val)
 plt.legend((p1, p2), ('Train', 'Cross Validation'))
 plt.xlabel('lambda')
 plt.ylabel('Error')

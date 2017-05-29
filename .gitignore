@@ -13,6 +13,10 @@
 
 *.dat
 
+*.jpg
+
+*.png
+
 mlclass-ex2-004/mlclass-ex2/pos.ps
 
 mlclass-ex4-004/mlclass-ex4/ex4_multiminimize.py
@@ -25,6 +29,8 @@ mlclass-ex7-004/mlclass-ex7/plotDataPoints_experiments.py
 
 mlclass-ex7-004/mlclass-ex7/graph*
 
-mlclass*/mlclass*/octave*
+*octave-*
 
 *.pdf
+
+.ipynb_checkpoints
