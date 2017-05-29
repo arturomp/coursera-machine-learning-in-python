@@ -1,5 +1,13 @@
 # Machine Learning basics in Python
 
-Based on octave/matlab assignments from the Coursera course by Stanford's Andrew Ng.
+![Coursera Machine Learning course logo](coursera-ml.png?raw=true "Coursera Machine Learning course")
 
-Implemented in python as closely as possible to matlab/octave code, porting most of the Coursera-provided matlab/octave scripts.
+Machine Learning concepts:
+
+* [Neural Networks with Backpropagation](neural-nets-backprop.ipynb)
+
+* [Bias vs. Variance with Linear & Polynomial Regression](bias-variance-learning-curves.ipynb)
+
+* [Support Vector Machines](support-vector-machines.ipynb)
+
+This repository is a python implementation resembling as closely as possible both provided and personally-completed code in the octave/matlab assignments from the Machine Learning Coursera class by Stanford's Andrew Ng.
