@@ -2,8 +2,6 @@
 
 ![Coursera Machine Learning course logo](coursera-ml.png?raw=true "Coursera Machine Learning course")
 
-Machine Learning concepts:
-
 * [Neural Networks with Backpropagation](neural-nets-backprop.ipynb)
 
 * [Bias vs. Variance with Linear & Polynomial Regression](bias-variance-learning-curves.ipynb)
