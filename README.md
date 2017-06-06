@@ -6,6 +6,6 @@
 
 * [Bias vs. Variance with Linear & Polynomial Regression](bias-variance-learning-curves.ipynb)
 
-* [Support Vector Machines](support-vector-machines.ipynb)
+* [Support Vector Machines (and Spam Classification)](support-vector-machines.ipynb)
 
 This repository is a python implementation resembling as closely as possible both provided and personally-completed code in the octave/matlab assignments from the Machine Learning Coursera class by Stanford's Andrew Ng.
